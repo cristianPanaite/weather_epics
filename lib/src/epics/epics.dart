@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:weather_app/src/actions/get_location.dart';
 import 'package:weather_app/src/actions/get_weather.dart';

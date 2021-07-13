@@ -1,4 +1,3 @@
-import 'package:weather_app/src/models/location.dart';
 import 'package:weather_app/src/models/weather.dart';
 
 class GetWeather {

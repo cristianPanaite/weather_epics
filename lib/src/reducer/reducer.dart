@@ -6,6 +6,7 @@ import 'package:weather_app/src/models/app_state.dart';
 Reducer<AppState> reducer = combineReducers(
   <Reducer<AppState>>[
     (AppState state, dynamic action) {
+      print(action);
       return state;
     },
     TypedReducer<AppState, GetLocationSuccessful>(_getLocationSuccessful),

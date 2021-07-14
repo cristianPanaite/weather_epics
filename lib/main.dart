@@ -27,7 +27,6 @@ void main() {
     ],
   );
   store.dispatch(GetLocation());
-  store.dispatch(GetWeather());
 
   runApp(WeatherApp(store: store));
 }

@@ -1,11 +1,4 @@
-library current;
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-
-import 'serializers.dart';
-
-part 'current.g.dart';
+part of models;
 
 abstract class Current implements Built<Current, CurrentBuilder> {
   factory Current([void Function(CurrentBuilder b) updates]) = _$Current;

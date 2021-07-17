@@ -1,13 +1,4 @@
-library app_state;
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-
-import 'location.dart';
-import 'serializers.dart';
-import 'weather.dart';
-
-part 'app_state.g.dart';
+part of models;
 
 abstract class AppState implements Built<AppState, AppStateBuilder> {
   factory AppState([void Function(AppStateBuilder b) updates]) = _$AppState;

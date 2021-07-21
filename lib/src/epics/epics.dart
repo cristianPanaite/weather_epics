@@ -1,4 +1,5 @@
 import 'package:redux_epics/redux_epics.dart';
+import 'package:weather_app/src/actions/app_action.dart';
 import 'package:weather_app/src/actions/index.dart';
 import 'package:weather_app/src/data/location_api.dart';
 import 'package:weather_app/src/data/weather_api.dart';
@@ -26,14 +27,14 @@ class AppEpics {
     );
   }
 
-  Stream<Object> _getLocation(Stream<GetLocation> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _getLocation(Stream<GetLocation> actions, EpicStore<AppState> store) {
     return actions
         .asyncMap((GetLocation event) => _locationApi.getLocation())
-        .expand((Location location) => <Object>[GetLocation.successful(location), const GetWeatherStart()])
+        .expand((Location location) => <AppAction>[GetLocation.successful(location), const GetWeatherStart()])
         .onErrorReturnWith((Object error, StackTrace st) => GetLocation.error(error, st));
   }
 
-  Stream<Object> _getWeather(Stream<GetWeather> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _getWeather(Stream<GetWeather> actions, EpicStore<AppState> store) {
     return actions
         .asyncMap((GetWeather event) => _weatherApi.getWeather(store.state.location!.lat, store.state.location!.lon))
         .map((Weather weather) => GetWeather.successful(weather))

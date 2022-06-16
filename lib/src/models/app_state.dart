@@ -2,14 +2,13 @@ part of models;
 
 abstract class AppState implements Built<AppState, AppStateBuilder> {
   factory AppState([void Function(AppStateBuilder b) updates]) = _$AppState;
-
   factory AppState.fromJson(dynamic json) => serializers.deserializeWith(serializer, json)!;
 
   AppState._();
 
-  Location? get location;
+  WeatherDetails get weatherDetails;
 
-  Weather? get weather;
+  String? get temperatureScale;
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this)! as Map<String, dynamic>;
 

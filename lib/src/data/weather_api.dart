@@ -4,22 +4,22 @@ import 'package:http/http.dart';
 import 'package:weather_app/src/models/index.dart';
 
 class WeatherApi {
-  WeatherApi({required Client client}) : _client = client;
+  WeatherApi({required String apiUrl, required Client client})
+      : _apiUrl = apiUrl,
+        _client = client;
 
+  final String _apiUrl;
   final Client _client;
+  final String key = 'a5dde5c0928ce3782c292c5c6df356e5';
 
-  /// [BUG] : Can't access weather api. :(
-  Future<Weather> getWeather(double _lat, double _lon) async {
-    print('enter in api weather');
-    final Uri uri = Uri.parse(
-        'https://api.openweathermap.org/data/2.5/onecall?lat=$_lat&lon=$_lon&exclude=hourly,minutely&appid=503ad05f4fe3732aa3078ffcd21a3f09');
+  Future<WeatherDetails> getWeather(String city) async {
+    final Uri uri = Uri.parse('$_apiUrl?q=$city&appid=$key');
     final Response response = await _client.get(uri);
-    print(response.body);
 
     if (response.statusCode >= 300) {
       throw StateError(response.body);
     }
 
-    return Weather.fromJson(jsonDecode(response.body));
+    return WeatherDetails.fromJson(jsonDecode(response.body));
   }
 }
